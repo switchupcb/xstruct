@@ -4,6 +4,8 @@ go 1.23.0
 
 toolchain go1.23.6
 
+retract v1.0.0
+
 require github.com/dave/dst v0.27.3
 
 require golang.org/x/sync v0.12.0 // indirect
