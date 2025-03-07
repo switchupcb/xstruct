@@ -12,37 +12,52 @@ import (
 
 // Environment represents the xstruct environment.
 type Environment struct {
-	DirPath string // The relative path to the directory that will be extracted.
-	Pkg     string // The output file's package.
-	Global  bool   // Whether to extract global variables and constants.
-	Funcs   bool   // Whether to extract function declarations.
-	Sort    bool   // Whether to sort the structs.
+	// Dirpath represents the relative path to the directory that is extracted.
+	DirPath string
+
+	// Pkg represents the output file's package.
+	Pkg string
+
+	// Global represents an option which determines whether to extract global variables and constants.
+	Global bool
+
+	// Funcs represents an option which determines whether to extract function declarations.
+	Funcs bool
+
+	// Sort represents an option which determines whether to sort the extracted objects.
+	Sort bool
 }
 
-// CLI runs xstruct from a Command Line Interface and returns the exit status.
+const (
+	osExitCodeSuccess    = 0
+	osExitCodeError      = 1
+	osExitCodeErrorShell = 2
+)
+
+// CLI runs xstruct from a Command Line Interface and returns an exit status.
 func CLI() int {
 	var env Environment
 
 	if err := env.parseArgs(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 
-		return 2
+		return osExitCodeErrorShell
 	}
 
-	if _, err := env.run(); err != nil {
+	if _, err := env.Run(); err != nil {
 		fmt.Fprintf(os.Stderr, "%v\n", err)
 
-		return 1
+		return osExitCodeError
 	}
 
-	return 0
+	return osExitCodeSuccess
 }
 
 // parseArgs parses the provided command line arguments.
 func (e *Environment) parseArgs() error {
 	var (
-		info   = flag.Bool("a", false, "Use -a to receive information about xstruct's author.")
-		dir    = flag.String("d", "", "The relative path to the directory that will be extracted.")
+		info   = flag.Bool("a", false, "Use -a to for information about xstruct's author.")
+		dir    = flag.String("d", "", "Specify the relative path to the directory that is extracted.")
 		pkg    = flag.String("p", "xstruct", "Use -p to set the output file's package.")
 		global = flag.Bool("g", false, "Use -g to extract global variables and constants.")
 		funcs  = flag.Bool("f", false, "Use -f to extract function declarations.")
@@ -58,7 +73,7 @@ func (e *Environment) parseArgs() error {
 	}
 
 	if *dir == "" {
-		return fmt.Errorf("you must specify a directory to extract structs from.")
+		return fmt.Errorf("you must specify a directory to extract structs from with -d.")
 	}
 
 	e.DirPath = *dir
@@ -71,7 +86,7 @@ func (e *Environment) parseArgs() error {
 }
 
 // Run runs xstruct programmatically using the given Environment's YMLPath.
-func (e *Environment) run() (string, error) {
+func (e *Environment) Run() (string, error) {
 	gen, err := config.LoadFiles(e.DirPath)
 	if err != nil {
 		return "", fmt.Errorf("%w", err)
