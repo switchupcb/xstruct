@@ -7,7 +7,7 @@ import (
 
 	"github.com/dave/dst"
 	"github.com/dave/dst/decorator"
-	"github.com/swichupcb/xstruct/cli/models"
+	"github.com/switchupcb/xstruct/cli/models"
 )
 
 // Parse parses structs from .go files.

@@ -5,7 +5,7 @@ import (
 	"io/fs"
 	"path/filepath"
 
-	"github.com/swichupcb/xstruct/cli/models"
+	"github.com/switchupcb/xstruct/cli/models"
 )
 
 const (

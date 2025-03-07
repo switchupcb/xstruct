@@ -1,4 +1,4 @@
-module github.com/swichupcb/xstruct
+module github.com/switchupcb/xstruct
 
 go 1.23.0
 

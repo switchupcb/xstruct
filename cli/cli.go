@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/swichupcb/xstruct/cli/config"
-	"github.com/swichupcb/xstruct/cli/generator"
-	"github.com/swichupcb/xstruct/cli/parser"
+	"github.com/switchupcb/xstruct/cli/config"
+	"github.com/switchupcb/xstruct/cli/generator"
+	"github.com/switchupcb/xstruct/cli/parser"
 )
 
 // Environment represents the xstruct environment.

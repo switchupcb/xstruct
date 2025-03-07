@@ -6,7 +6,7 @@ import (
 	"sort"
 
 	"github.com/dave/dst"
-	"github.com/swichupcb/xstruct/cli/models"
+	"github.com/switchupcb/xstruct/cli/models"
 	"golang.org/x/tools/imports"
 )
 

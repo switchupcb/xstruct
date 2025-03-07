@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	"github.com/swichupcb/xstruct/cli"
+	"github.com/switchupcb/xstruct/cli"
 )
 
 func main() {
