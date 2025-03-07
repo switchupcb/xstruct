@@ -1,0 +1,19 @@
+run:
+  timeout: 5m
+  tests: false
+
+linters:
+  enable-all: true
+  disable:
+    - depguard
+    - gofumpt
+    - err113
+    - exhaustruct
+    - forbidigo
+    - gocritic
+    - lll
+    - tenv # deprecated
+
+  fast: false
+linters-settings:
+ 

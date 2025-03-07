@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"go/parser"
 	"go/token"
 
@@ -15,7 +16,7 @@ func Parse(gen *models.Generator, global bool, funcs bool) error {
 	for _, path := range gen.GoFiles {
 		astFile, err := astParseFilepath(path)
 		if err != nil {
-			return err
+			return fmt.Errorf("parse: %w", err)
 		}
 
 		gen.ASTFiles = append(gen.ASTFiles, astFile)
@@ -33,15 +34,18 @@ func Parse(gen *models.Generator, global bool, funcs bool) error {
 func astParseFilepath(path string) (*dst.File, error) {
 	fileset := token.NewFileSet()
 	file, err := decorator.ParseFile(fileset, path, nil, parser.ParseComments)
+
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("astParseFilepath: %w", err)
 	}
+
 	return file, nil
 }
 
 // astParseDecls parses type declarations from an ast.File (with comments).
 func astParseDecls(f *dst.File, global bool) []*dst.GenDecl {
 	decls := make([]*dst.GenDecl, 0, len(f.Decls))
+
 	for _, node := range f.Decls {
 		switch decl := node.(type) {
 		case *dst.GenDecl:
@@ -59,6 +63,7 @@ func astParseDecls(f *dst.File, global bool) []*dst.GenDecl {
 // astParseFuncs parses func declarations from an ast.File (with comments).
 func astParseFuncs(f *dst.File) []*dst.FuncDecl {
 	decls := make([]*dst.FuncDecl, 0, len(f.Decls))
+
 	for _, node := range f.Decls {
 		switch decl := node.(type) {
 		case *dst.FuncDecl:

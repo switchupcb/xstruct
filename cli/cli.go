@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"errors"
 	"flag"
 	"fmt"
 	"os"
@@ -73,7 +74,7 @@ func (e *Environment) parseArgs() error {
 	}
 
 	if *dir == "" {
-		return fmt.Errorf("you must specify a directory to extract structs from with -d.")
+		return errors.New("you must specify a directory to extract structs from with -d")
 	}
 
 	e.DirPath = *dir
@@ -97,7 +98,9 @@ func (e *Environment) Run() (string, error) {
 	}
 
 	code, err := generator.Generate(gen, e.Pkg, e.Sort)
+
 	defer fmt.Println(code)
+
 	if err != nil {
 		return code, fmt.Errorf("%w", err)
 	}

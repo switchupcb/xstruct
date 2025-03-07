@@ -1,5 +1,8 @@
 # Extract a package's structs, functions, or global variables.
 
+[![GoDoc](https://img.shields.io/badge/godoc-reference-5272B4.svg?style=for-the-badge&logo=appveyor&logo=appveyor)](https://pkg.go.dev/github.com/switchupcb/xstruct)
+[![License](https://img.shields.io/github/license/switchupcb/copygen.svg?style=for-the-badge)](https://github.com/switchupcb/xstruct/blob/main/LICENSE)
+
 Use `xstruct` to stop wasting time refactoring and debugging projects.
 
 ## What is xstruct?

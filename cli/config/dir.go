@@ -15,7 +15,6 @@ const (
 
 // LoadFiles loads all .go files from the given path.
 func LoadFiles(relativepath string) (*models.Generator, error) {
-
 	// determine whether sub-directories will be traversed.
 	var recursive bool
 
@@ -36,12 +35,11 @@ func LoadFiles(relativepath string) (*models.Generator, error) {
 
 	// walk the entire directory (includes sub-directories).
 	gen := new(models.Generator)
-	err = filepath.WalkDir(absfilepath, func(path string, d fs.DirEntry, err error) error {
+	err = filepath.WalkDir(absfilepath, func(path string, d fs.DirEntry, err error) error { //nolint:revive
 		if filepath.Ext(path) == ".go" {
 			if recursive {
 				gen.GoFiles = append(gen.GoFiles, path)
 			} else {
-
 				// add the file if the directory == the given directory.
 				if filepath.Dir(path) == absfilepath {
 					gen.GoFiles = append(gen.GoFiles, path)
@@ -50,14 +48,14 @@ func LoadFiles(relativepath string) (*models.Generator, error) {
 		}
 
 		if err != nil {
-			return fmt.Errorf("an error occurred walking the directory: %w", err)
+			return fmt.Errorf("load files: error walking the directory: %w", err)
 		}
 
 		return nil
 	})
 
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("load files: %w", err)
 	}
 
 	return gen, nil

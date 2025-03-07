@@ -1,12 +1,14 @@
 module github.com/swichupcb/xstruct
 
-go 1.18
+go 1.23.0
 
-require github.com/dave/dst v0.26.2
+toolchain go1.23.6
+
+require github.com/dave/dst v0.27.3
+
+require golang.org/x/sync v0.12.0 // indirect
 
 require (
-	golang.org/x/mod v0.6.0-dev.0.20220106191415-9b9b3d81d5e3 // indirect
-	golang.org/x/sys v0.0.0-20220503163025-988cb79eb6c6 // indirect
-	golang.org/x/tools v0.1.10
-	golang.org/x/xerrors v0.0.0-20220411194840-2f41105eb62f // indirect
+	golang.org/x/mod v0.24.0 // indirect
+	golang.org/x/tools v0.31.0
 )
