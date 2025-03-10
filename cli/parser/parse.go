@@ -10,7 +10,7 @@ import (
 	"github.com/switchupcb/xstruct/cli/models"
 )
 
-// Parse parses structs from .go files.
+// Parse parses declarations from .go files into a Generator.
 func Parse(gen *models.Generator, global bool, funcs bool) error {
 	gen.ASTFiles = make([]*dst.File, len(gen.GoFiles))
 	for _, path := range gen.GoFiles {

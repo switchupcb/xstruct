@@ -22,23 +22,23 @@ func Generate(gen *models.Generator, pkg string, srt bool) (string, error) {
 		})
 	}
 
-	content := string(astWriteDecls(pkg, gen.ASTDecls, gen.FuncDecls))
+	content := AstWriteDecls(pkg, gen.ASTDecls, gen.FuncDecls)
 
 	// imports
-	importsdata, err := imports.Process("", []byte(content), nil)
+	importsdata, err := imports.Process("", content, nil)
 	if err != nil {
-		return content, fmt.Errorf("an error occurred while formatting the generated code.\n%w", err)
+		return string(content), fmt.Errorf("an error occurred while formatting the generated code.\n%w", err)
 	}
 
 	return string(importsdata), nil
 }
 
-// astWriteDecls writes ast.GenDecl to a file with a specified package.
-func astWriteDecls(pkg string, astDecls []*dst.GenDecl, funcDecls []*dst.FuncDecl) []byte {
+// AstWriteDecls writes ast.GenDecl to a file with a specified package.
+func AstWriteDecls(pkg string, astDecls []*dst.GenDecl, funcDecls []*dst.FuncDecl) []byte {
 	var b bytes.Buffer
 
 	b.WriteString("package " + pkg + "\n\n")
-	b.Write(printDecls(astDecls, funcDecls))
+	b.Write(PrintDecls(astDecls, funcDecls))
 
 	return b.Bytes()
 }

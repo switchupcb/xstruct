@@ -8,9 +8,8 @@ import (
 	"github.com/dave/dst/decorator"
 )
 
-// dst is sadge
-// https://github.com/dave/dst/issues/24
-func printDecls(astDecls []*dst.GenDecl, funcDecls []*dst.FuncDecl) []byte {
+// PrintDecls prints the given declarations into a file without a package declaration.
+func PrintDecls(astDecls []*dst.GenDecl, funcDecls []*dst.FuncDecl) []byte {
 	var output bytes.Buffer
 
 	// create a new ast file, print it, then remove its package declaration.

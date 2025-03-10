@@ -13,7 +13,7 @@ const (
 	recursivePathLen = 4
 )
 
-// LoadFiles loads all .go files from the given path.
+// LoadFiles loads all .go files from the given path into a Generator.
 func LoadFiles(relativepath string) (*models.Generator, error) {
 	// determine whether sub-directories will be traversed.
 	var recursive bool
