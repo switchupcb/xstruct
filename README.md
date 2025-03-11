@@ -49,9 +49,10 @@ You can use `xstruct` to stop wasting time refactoring and debugging projects.
 
 **Here is Open Source Software using `xstruct`.**
 
-| Software                                       | Description              | `xstruct` Use                                                                                       |
-| :--------------------------------------------- | :----------------------- | :-------------------------------------------------------------------------------------------------- |
-| [`disgo`](https://github.com/switchupcb/disgo) | API Wrapper (SDK Client) | Disgo uses `xstruct` to combine a Go type library into a single file, which code is generated from. |
+| Software                                       | Description                         | `xstruct` Use                                                                                                         |
+| :--------------------------------------------- | :---------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| [`disgo`](https://github.com/switchupcb/disgo) | API Wrapper (SDK Client)            | Disgo uses `xstruct` to combine a Go type library into a single file, which code is generated from.                   |
+| [`dbgo`](https://github.com/switchupcb/dbgo)   | Database Consumer Package Generator | `dbgo` uses `xstruct` to combine generated database models into a single file, which can be used with an interpreter. |
 
 ## What is the license?
 
